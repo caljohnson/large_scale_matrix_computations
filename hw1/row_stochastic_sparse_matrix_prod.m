@@ -9,8 +9,7 @@ function [ y ] = row_stochastic_sparse_matrix_prod( n, Q, Jv, x )
 %         x  - dense vector to mutliply by
 %Outputs: y = A'x
 
-y = Q'*x;
-y = y + ones(n,1)*sum(x(Jv))/n;
+y = Q'*x + ones(n,1)*sum(x(Jv))/n;
 
 end
 

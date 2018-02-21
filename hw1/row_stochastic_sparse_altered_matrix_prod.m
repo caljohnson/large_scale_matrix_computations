@@ -12,7 +12,6 @@ function [ y ] = row_stochastic_sparse_altered_matrix_prod( alpha, n, Q, Jv, x )
 %         x  - dense vector to mutliply by
 %Outputs: y = A_alpha^T x
 
-y = alpha*Q'*x;
-y = y + (alpha/n)*ones(n,1)*sum(x(Jv)) + ((1-alpha)/n)*ones(n,1)*sum(x);
+y = alpha*Q'*x + (alpha/n)*ones(n,1)*sum(x(Jv)) + ((1-alpha)/n)*ones(n,1)*sum(x);
 end
 

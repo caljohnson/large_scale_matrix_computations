@@ -2,7 +2,7 @@
 %Carter Johnson
 
 %use power method to compute dominant eigenvalue and eigenvector for
-% the www0 matrix
+% the www0 matrix - using altered matrix-prod method -> A^T_alpha x
 
 load('www0.mat')
 load('x0.mat')
@@ -22,11 +22,11 @@ e = ones(n,1);
 [lambda2, x2] = power_method(matrix_prod, x0, eps, k_max);
 
 %compute relative eigenvalue residual
-res1 = max(abs(matrix_prod(x1) - lambda1*x))/max(abs(x1));
+res1 = max(abs(matrix_prod(x1) - lambda1*x1))/max(abs(x1));
 res2 = max(abs(matrix_prod(x2) - lambda2*x2))/max(abs(x2));
 
 %compute 10 most important websites from PageRank
-[PageRank1, I1] = sort(x1);
-[PageRank2, I2] = sort(x2);
+[PageRank1, I1] = sort(x1, 'descend');
+[PageRank2, I2] = sort(x2, 'descend');
 I1(1:10)
 I2(1:10)
