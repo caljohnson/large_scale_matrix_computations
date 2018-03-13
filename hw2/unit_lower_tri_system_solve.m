@@ -1,7 +1,6 @@
-function [ c ] = unit_lower_tri_system_solve( J, I, VL, b )
-%UNIT_LOWER_TRI_SYSTEM_SOLVE Solves Lc = b
-%   where L is a unit-lower triangular matrix given in CSC format by J, I, and VL
-%   where the CSC format is strictly-lower triangular
+function [ c ] = lower_tri_system_solve( J, I, VL, b )
+%LOWER_TRI_SYSTEM_SOLVE Solves Lc = b
+%   where L is a lower triangular matrix given in CSC format by J, I, and VL
 % Input: vector J of row indices
 %        vector I of column pointers
 %        vector VL of sparse values
