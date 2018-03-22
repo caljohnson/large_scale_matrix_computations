@@ -1,6 +1,6 @@
 function [v, RELRES, its ] = generalized_2d_poissons( gamma, m, f, g)
 %GENERALIZED_2D_POISSONS Solves generalized 2D Poissons eqn
-%       ?uxx ? uyy + ?ux = f(x, y), (x, y) ? R := (0, 1) × (0, 1),
+%       -uxx - uyy + gamma*ux = f(x, y), (x, y) ? R := (0, 1) × (0, 1),
 %           u = g(x, y), (x, y) ? ?R.
 %INPUT: gamma, m - discretization size, f - RHS function, g - boundary function
 %OUTPUT: approximate solution v, relative residual norm RELRES
