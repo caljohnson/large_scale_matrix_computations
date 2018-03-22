@@ -3,15 +3,15 @@
 %Carter Johnson
 
 
-m = 2;
+m = 3;
 h = 1/(2^m);
 
 %case 4
 alpha = 2;
 beta = 7/2;
 gamma = 2;
-a = 0.5;
-b = 1.5;
+a = 0.25;
+b = 1;
 
 f= @(x,y) sin(beta*pi*x).*(beta^2*pi^2*y.^alpha.*cos(gamma*pi*y) + ...
     gamma^2*pi^2*y.^alpha.*cos(gamma*pi*y) - ...
@@ -36,17 +36,16 @@ v0_2 = repermute_f_R2(u2',h,a);
 v0 = [v0_1(1:end-((1-a)/h-1)*(1/h-1)); v0_2];
 tol = 1e-10;
 nmax = 1000;
-figure(3)
-spy(A)
 
-
-v = multiplicative_schwarz_method(A,c,I1,I2,m, a,b,v0,tol,nmax);
+% v = multiplicative_schwarz_method(A,c,I1,I2,m, a,b,v0,tol,nmax);
+v = additive_schwarz_pcg(A,c,I1,I2,m, a,b,v0,tol,nmax);
 
 v1 = permute_f_R1(I1*v,h,a,b,1,3);
 v2 = permute_f_R2(I2*v,h,a,4,1);
 
-norm(v1-u1')
-norm(v2-u2')
+max1 = max(max(abs(v1-u1')))/max(max(abs(u1)));
+max2 = max(max(abs(v2-u2')))/max(max(abs(u2)));
+max(max1,max2)
 
 display('done');
 

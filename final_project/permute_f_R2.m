@@ -13,6 +13,6 @@ no_int_2 = no_int_1+1/h-1;
 f((1-a)/h, 1:end) = reshape(f_half(no_int_1+1:no_int_2), 1, 1/h-1);
 
 %interior box
-f((1-a)/h+1:end, 1:end) = reshape(f_half(no_int_2+1:end), (4-a)/h-1, 1/h-1);
+f((1-a)/h+1:end, 1:end) = reshape(f_half(no_int_2+1:end), (3+a)/h-1, 1/h-1);
 end
 

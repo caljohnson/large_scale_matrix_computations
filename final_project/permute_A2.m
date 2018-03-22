@@ -15,7 +15,7 @@ box_nos = gamma_nos(end)+1:no_points;
 %put them in old order
 order = [];
 width1 = (1-a)/h-1;
-width2 = 3/h-1;
+width2 = (3+a)/h-1;
 for ii=1:1/h-1
    j = width1*(ii-1)+1;
    k = width2*(ii-1)+1;
