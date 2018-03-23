@@ -13,6 +13,8 @@ function [ V ] = rectangular_twod_poissons( m, f, ic, id, b0, b1, c0, c1)
 h = 1/(2^m); %get grid spacing
 mx = ic/h - 1; %number of x grid points
 my = id/h - 1; %number of y grid points
+% x = h:h:ic-h;
+% y = h:h:id-h;
 
 %add BC's to the RHS function
 f(1,:) = f(1,:) + c0/h^2;
@@ -24,11 +26,15 @@ f(:,end) = f(:,end) + b1'/h^2;
 f_prime = twod_fft_matrix(f);
 
 %compute V_p,jk = h^2 f_jk /(lambda_j + lambda_k)
+% denom = 4/h^2*(sin((x'*pi)/(2*(mx+1))).^2*ones(1,my) + ...
+%                         ones(mx,1)*sin((y*pi)/(2*(my+1))).^2);
+% V_p = f_prime./denom';
+
 %eigenvalues
 kx = 1:mx;
 ky = 1:my;
-lambdas_x = 2*(1-cos(pi*kx/mx));
-lambdas_y = 2*(1-cos(pi*ky/my));
+lambdas_x = 2*(1-cos(pi*kx/(mx+1)));
+lambdas_y = 2*(1-cos(pi*ky/(my+1)));
 lambda_sums = zeros(my,mx);
 if mx <= my
     for j = 1:mx
